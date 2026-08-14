@@ -1,0 +1,22 @@
+{
+  "name": "echo-verify-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:e2e": "playwright test --reporter=list"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "lucide-react": "^0.277.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "@playwright/test": "^1.45.0",
+    "axe-core": "^4.11.3"
+  }
+}
