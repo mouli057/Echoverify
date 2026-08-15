@@ -3,26 +3,31 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>EchoVerify — Prototype Walkthrough</title>
+    <title>EchoVerify | Voice Verification Platform</title>
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
     <header class="site-header">
-      <div class="wrap">
+      <div class="wrap header-wrap">
         <div class="logo">Echo<span class="accent">Verify</span></div>
-        <nav class="nav">
-          <a href="#" class="nav-link">Home</a>
-          <a href="#" class="nav-link">How it works</a>
-          <a href="#" class="nav-link">Verifier panel</a>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="#overview" class="nav-link">Overview</a>
+          <a href="#pipeline" class="nav-link">Pipeline</a>
+          <a href="#workflow" class="nav-link">Workflow</a>
+          <a href="#attestation" class="nav-link">Attestation</a>
         </nav>
       </div>
     </header>
 
     <main class="wrap main">
-      <section class="hero card">
+      <section id="overview" class="hero card">
         <div class="hero-left">
-          <h1>Community-verified voice trust for under-resourced languages</h1>
-          <p class="lead">Upload a voice note, see a transcript with flagged rhetoric, and route to a trusted verifier panel.</p>
+          <span class="eyebrow">Community verification platform</span>
+          <h1>Review voice content with human-led trust checks.</h1>
+          <p class="lead">
+            EchoVerify helps teams review voice notes in under-resourced languages by combining transcript analysis,
+            synthetic-audio signals, and a local verifier review flow for clearer decision-making.
+          </p>
           <div class="controls">
             <label class="file-btn">
               <input id="fileInput" type="file" accept="audio/*" />
@@ -30,55 +35,189 @@
             </label>
             <button id="sampleBtn" class="btn btn-ghost">Use demo clip</button>
           </div>
+          <div class="stats-row" aria-label="System summary">
+            <div class="stat-box">
+              <strong>4-step</strong>
+              <span>review flow</span>
+            </div>
+            <div class="stat-box">
+              <strong>2 signals</strong>
+              <span>text + audio</span>
+            </div>
+            <div class="stat-box">
+              <strong>Local panel</strong>
+              <span>human review</span>
+            </div>
+          </div>
         </div>
+
         <div class="hero-right">
-          <div class="steps" aria-hidden="false">
-            <div class="step active" id="step-1">
-              <strong>Step 1</strong>
-              <span>Select or upload a clip</span>
+          <div class="system-card">
+            <div class="mini-header">
+              <span class="status-dot"></span>
+              <span>Platform architecture</span>
             </div>
-            <div class="step" id="step-2">
-              <strong>Step 2</strong>
-              <span>Transcript & flags</span>
-            </div>
-            <div class="step" id="step-3">
-              <strong>Step 3</strong>
-              <span>Verifier review</span>
-            </div>
-            <div class="step" id="step-4">
-              <strong>Step 4</strong>
-              <span>Attestation log</span>
+
+            <div class="stack">
+              <div class="stack-row">
+                <span>Speech transcription</span>
+                <span class="pill success">Demo ASR</span>
+              </div>
+              <div class="stack-row">
+                <span>Manipulation flags</span>
+                <span class="pill warning">Sample rhetoric</span>
+              </div>
+              <div class="stack-row">
+                <span>Synthetic voice</span>
+                <span class="pill alert">Illustrative signal</span>
+              </div>
+              <div class="stack-row">
+                <span>Verifier routing</span>
+                <span class="pill neutral">Demo panel</span>
+              </div>
+              <div class="stack-row">
+                <span>Attestation log</span>
+                <span class="pill secure">Sample record</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="content-grid">
+      <section id="pipeline" class="feature-strip">
+        <article class="feature-card card">
+          <div class="icon">🎙️</div>
+          <h3>Speech transcription</h3>
+          <p>Illustrative multilingual transcription for community-language voice notes.</p>
+        </article>
+        <article class="feature-card card">
+          <div class="icon">🧠</div>
+          <h3>Manipulation flags</h3>
+          <p>Demo heuristics highlight urgency cues, loaded language, and claim-style patterns.</p>
+        </article>
+        <article class="feature-card card">
+          <div class="icon">🔊</div>
+          <h3>Synthetic detection</h3>
+          <p>Example acoustic indicators suggest how a model might flag voice-cloning patterns.</p>
+        </article>
+        <article class="feature-card card">
+          <div class="icon">✅</div>
+          <h3>Attestation logging</h3>
+          <p>Sample verifier labels are shown in a demo attestation record for workflow testing.</p>
+        </article>
+      </section>
+
+      <section class="input-panel card">
+        <div class="input-header">
+          <div>
+            <span class="eyebrow">Custom case input</span>
+            <h2>Use your own message details</h2>
+          </div>
+        </div>
+
+        <form id="customCaseForm" class="custom-form">
+          <div class="field-group">
+            <label for="caseTitle">Message title</label>
+            <input id="caseTitle" name="caseTitle" type="text" placeholder="e.g., Urgent local alert" />
+          </div>
+
+          <div class="field-group">
+            <label for="caseLanguage">Language or dialect</label>
+            <input id="caseLanguage" name="caseLanguage" type="text" placeholder="e.g., Swahili" />
+          </div>
+
+          <div class="field-group full">
+            <label for="caseTranscript">Transcript</label>
+            <textarea id="caseTranscript" name="caseTranscript" rows="4" placeholder="Paste or write the voice note transcript here..."></textarea>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label for="caseRisk">Synthetic risk</label>
+              <select id="caseRisk" name="caseRisk">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="caseFlags">Flag labels</label>
+              <input id="caseFlags" name="caseFlags" type="text" placeholder="Urgency, claim, loaded language" />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Showcase this data</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="workflow" class="content-grid">
         <aside class="panel card" aria-labelledby="clipsTitle">
-          <h2 id="clipsTitle">Clips</h2>
+          <h2 id="clipsTitle">Voice queue</h2>
           <ul id="clipList" class="clip-list"></ul>
         </aside>
 
         <section class="panel card" aria-labelledby="transcriptTitle">
-          <h2 id="transcriptTitle">Transcript & Flags</h2>
+          <h2 id="transcriptTitle">Transcript & signal review</h2>
+          <div class="signal-header">
+            <div class="signal-item">
+              <span class="label">Language</span>
+              <strong id="languageBadge">Kinyarwanda</strong>
+            </div>
+            <div class="signal-item">
+              <span class="label">Demo synthetic risk</span>
+              <strong id="syntheticBadge" class="risk-low">Low</strong>
+            </div>
+          </div>
           <div id="transcriptArea" class="transcript">No clip selected. Use "demo clip" or upload a voice note.</div>
           <div id="flagsArea" class="flags"></div>
+          <div id="syntheticPanel" class="synthetic-panel">
+            <div class="synth-row">
+              <span>Pitch consistency</span>
+              <div class="meter"><i id="pitchMeter" style="width: 20%"></i></div>
+            </div>
+            <div class="synth-row">
+              <span>Breath pattern</span>
+              <div class="meter"><i id="breathMeter" style="width: 28%"></i></div>
+            </div>
+            <div class="synth-row">
+              <span>Splice artifacts</span>
+              <div class="meter"><i id="spliceMeter" style="width: 12%"></i></div>
+            </div>
+          </div>
         </section>
 
-        <aside class="panel card" aria-labelledby="verifierTitle">
-          <h2 id="verifierTitle">Verifier Panel</h2>
+        <aside id="attestation" class="panel card" aria-labelledby="verifierTitle">
+          <h2 id="verifierTitle">Verifier panel</h2>
           <div id="verifierArea" class="verifier">
-            <p class="muted">No item routed. After reviewing the transcript, click "Route to verifiers" to continue.</p>
+            <p class="muted">No item routed. Review the transcript, inspect the audio signal, and route to a trusted local verifier.</p>
             <div class="verifier-controls hidden" id="verifierControls">
               <label for="verifierName">Verifier name</label>
               <input id="verifierName" placeholder="e.g., Asha" />
-              <label for="verifierDecision">Decision</label>
+              <label for="verifierDecision">Context label</label>
               <select id="verifierDecision">
-                <option value="contextual">Contextualized</option>
-                <option value="manipulative">Manipulative</option>
-                <option value="uncertain">Uncertain</option>
+                <option value="verified">Verified</option>
+                <option value="disputed">Disputed</option>
+                <option value="unverifiable">Unverifiable</option>
+                <option value="synthetic">Synthetic / cloned</option>
               </select>
               <button id="signBtn" class="btn btn-primary">Sign attestation</button>
+            </div>
+            <div class="verification-list">
+              <div class="verifier-row">
+                <span>Asha K.</span>
+                <span class="trust">Trust 92%</span>
+              </div>
+              <div class="verifier-row">
+                <span>Jules M.</span>
+                <span class="trust">Trust 87%</span>
+              </div>
+              <div class="verifier-row">
+                <span>Sofia N.</span>
+                <span class="trust">Trust 89%</span>
+              </div>
             </div>
             <div id="attestLog" class="attest-log"></div>
           </div>
@@ -90,12 +229,11 @@
         <button id="nextBtn" class="btn btn-primary">Next</button>
         <button id="routeBtn" class="btn btn-orange">Route to verifiers</button>
       </section>
-
     </main>
 
     <footer class="site-footer">
       <div class="wrap">
-        <p>EchoVerify — Prototype demo · Designed for low-end devices and offline-first workflows.</p>
+        <p>EchoVerify — voice verification workflow for community trust and review.</p>
       </div>
     </footer>
 
