@@ -4,9 +4,101 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>EchoVerify — Prototype Walkthrough</title>
+    <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <header class="site-header">
+      <div class="wrap">
+        <div class="logo">Echo<span class="accent">Verify</span></div>
+        <nav class="nav">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#" class="nav-link">How it works</a>
+          <a href="#" class="nav-link">Verifier panel</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap main">
+      <section class="hero card">
+        <div class="hero-left">
+          <h1>Community-verified voice trust for under-resourced languages</h1>
+          <p class="lead">Upload a voice note, see a transcript with flagged rhetoric, and route to a trusted verifier panel.</p>
+          <div class="controls">
+            <label class="file-btn">
+              <input id="fileInput" type="file" accept="audio/*" />
+              Upload voice note
+            </label>
+            <button id="sampleBtn" class="btn btn-ghost">Use demo clip</button>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="steps" aria-hidden="false">
+            <div class="step active" id="step-1">
+              <strong>Step 1</strong>
+              <span>Select or upload a clip</span>
+            </div>
+            <div class="step" id="step-2">
+              <strong>Step 2</strong>
+              <span>Transcript & flags</span>
+            </div>
+            <div class="step" id="step-3">
+              <strong>Step 3</strong>
+              <span>Verifier review</span>
+            </div>
+            <div class="step" id="step-4">
+              <strong>Step 4</strong>
+              <span>Attestation log</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <aside class="panel card" aria-labelledby="clipsTitle">
+          <h2 id="clipsTitle">Clips</h2>
+          <ul id="clipList" class="clip-list"></ul>
+        </aside>
+
+        <section class="panel card" aria-labelledby="transcriptTitle">
+          <h2 id="transcriptTitle">Transcript & Flags</h2>
+          <div id="transcriptArea" class="transcript">No clip selected. Use "demo clip" or upload a voice note.</div>
+          <div id="flagsArea" class="flags"></div>
+        </section>
+
+        <aside class="panel card" aria-labelledby="verifierTitle">
+          <h2 id="verifierTitle">Verifier Panel</h2>
+          <div id="verifierArea" class="verifier">
+            <p class="muted">No item routed. After reviewing the transcript, click "Route to verifiers" to continue.</p>
+            <div class="verifier-controls hidden" id="verifierControls">
+              <label for="verifierName">Verifier name</label>
+              <input id="verifierName" placeholder="e.g., Asha" />
+              <label for="verifierDecision">Decision</label>
+              <select id="verifierDecision">
+                <option value="contextual">Contextualized</option>
+                <option value="manipulative">Manipulative</option>
+                <option value="uncertain">Uncertain</option>
+              </select>
+              <button id="signBtn" class="btn btn-primary">Sign attestation</button>
+            </div>
+            <div id="attestLog" class="attest-log"></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="controls-row">
+        <button id="prevBtn" class="btn btn-ghost" disabled>Back</button>
+        <button id="nextBtn" class="btn btn-primary">Next</button>
+        <button id="routeBtn" class="btn btn-orange">Route to verifiers</button>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>EchoVerify — Prototype demo · Designed for low-end devices and offline-first workflows.</p>
+      </div>
+    </footer>
+
+    <script src="/src/script.js" type="module"></script>
   </body>
 </html>
